@@ -6,29 +6,20 @@ Link: https://www.hackerrank.com/challenges/apple-and-orange/problem
 require 'json'
 require 'stringio'
 
-def getDistanceAppleAndHouse(apple, startHouse)
-    return startHouse - apple
-end
-
-def getDistanceOrangeAndHouse(orange, endHouse)
-    return (orange - endHouse) * -1
-end
-
-def countApplesAndOranges(s, t, a, b, apples, oranges)
-    distanceBetweenAppleAndHouse = getDistanceAppleAndHouse a, s
-    distanceBetweenOrangeAndHouse = getDistanceOrangeAndHouse b, t
-    
+def countApplesAndOranges(s, t, a, b, apples, oranges)    
     totalApplesInHouse = 0
     totalOrangesInHouse = 0
     
     apples.each { |appleDistance|
-        if appleDistance >= distanceBetweenAppleAndHouse
+        totalDistance = a + appleDistance
+        if totalDistance >= s && totalDistance <= t
             totalApplesInHouse += 1
         end
     }
     
     oranges.each { |orangeDistance|
-        if orangeDistance <= distanceBetweenOrangeAndHouse
+        totalDistance = b + orangeDistance
+        if totalDistance >= s && totalDistance <= t
             totalOrangesInHouse += 1
         end
     }
